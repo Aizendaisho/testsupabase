@@ -4,24 +4,23 @@
 import Link from 'next/link';
 import { supabase } from '../lib/supabaseClient';
 import { FiLogOut } from 'react-icons/fi';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { useAuthStore } from '@/store/authStore';
+import { useRouter } from 'next/navigation'; // Importa useRouter
 
 const Navbar = () => {
-  // Usamos el estado global del usuario y la función para actualizarlo
-  const { user, setUser } = useAuthStore();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-  console.log(user);
+ const { user, setUser } = useAuthStore();
+ const [isLoggingOut, setIsLoggingOut] = useState(false);
+ const router = useRouter(); // Inicializa useRouter
 
-  const handleLogout = async () => {
+ const handleLogout = async () => {
     setIsLoggingOut(true);
-    // Espera al menos 1 segundo para mostrar la pantalla de carga
     await new Promise((resolve) => setTimeout(resolve, 1000));
     await supabase.auth.signOut();
-    // Actualizamos el store global, de esta manera se reflejará en toda la app
     setUser(null);
     setIsLoggingOut(false);
-  };
+    router.push('/'); // Redirige a la página principal después del logout
+ };
 
   return (
     <>

@@ -51,6 +51,12 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+		  backgroundColor: {
+			'paper-light': '#f8f5f0', // Un beige muy claro, similar a papel
+		  },
+		  fontFamily: {
+			'note': ['Caveat', 'cursive'], // Fuente manuscrita (ejemplo)
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
